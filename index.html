@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="wrap">
+        <header>
+            <p class="eyebrow">Reaksiya testi</p>
+            <h1>Tez bos</h1>
+            <p class="lede">Qizil ekran yashilga aylanishi bilan bosing. 5 urinishda o'rtacha reaksiyangizni bilib
+                oling.</p>
+        </header>
+
+        <button class="stage" id="stage" type="button">
+            <span class="s-label" id="label">Tayyormisiz?</span>
+            <span class="s-big" id="big">Boshlash</span>
+            <span class="s-hint" id="hint">Bosing yoki Space tugmasini bosing. 5 urinish bo'ladi.</span>
+        </button>
+
+        <section aria-label="Urinishlar">
+            <p class="h">Urinishlar, ms</p>
+            <div class="rounds">
+                <div class="chip">—</div>
+                <div class="chip">—</div>
+                <div class="chip">—</div>
+                <div class="chip">—</div>
+                <div class="chip">—</div>
+            </div>
+        </section>
+
+        <section class="stats" aria-label="Natijalar">
+            <div class="stat"><span class="h" style="margin:0">Oxirgi</span><span class="v" id="last">—</span></div>
+            <div class="stat"><span class="h" style="margin:0">O'rtacha</span><span class="v" id="avg">—</span></div>
+            <div class="stat"><span class="h" style="margin:0">Rekord</span><span class="v" id="best">—</span></div>
+        </section>
+
+        <section class="how" aria-label="Kod haqida">
+            <h2>Kod qayerda ishlaydi</h2>
+            <div>
+                <p><code>setTimeout</code> ekran yashil bo'lishidan oldingi tasodifiy kutishni boshqaradi. Erta
+                    bossangiz,
+                    <code>clearTimeout</code> uni bekor qiladi.
+                </p>
+                <pre>
+                    waitTimer = setTimeout(goGreen, 1200 + Math.random() * 3000);clearTimeout(waitTimer);
+
+                </pre>
+            </div>
+            <div>
+                <p><code>setInterval</code> yashil ekranda har 10 ms da millisekundlarni yangilaydi. Bosganingizda
+                    <code>clearInterval</code> uni to'xtatadi.
+                </p>
+                <pre>
+                    tickTimer = setInterval(() => {
+                      big.textContent = Math.round(performance.now() - t0) + " ms";}, 10);clearInterval(tickTimer);
+            </pre>
+            </div>
+        </section>
+    </div>
+  <script src="./js/main.js"></script>
+</body>
+
+</html>

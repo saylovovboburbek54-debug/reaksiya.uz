@@ -1,0 +1,268 @@
+:root {
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html {
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font:
+    14px -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  background: #fff;
+  color: #000;
+}
+
+img {
+  max-width: 100%;
+}
+
+[hidden]:not([hidden="until-found" i]) {
+  display: none !important;
+}
+/* Layout: one narrow column: title, a big press area that changes colour with the game state, five attempt chips, three stats, two code notes.
+   Page chrome follows light and dark; the press area keeps its own state colours in both. */
+:root {
+  --bg: #eef1f8;
+  --fg: #23316c;
+  --muted: #566080;
+  --panel: #ffffff;
+  --line: #d5dbea;
+  --idle: #2d3a8c;
+  --wait: #c0304f;
+  --go: #3fe08f;
+  --early: #f4b83a;
+  --result: #1b6f8a;
+  --done: #4a2f9c;
+  --on-dark: #ffffff;
+  --on-go: #052e1a;
+  --on-early: #2a1a02;
+  --display: "Martian Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --body: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #2b2e2b;
+    --fg: #eaeefc;
+    --muted: #98a2c7;
+    --panel: #171c36;
+    --line: #2a3157;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1224;
+  --fg: #eaeefc;
+  --muted: #98a2c7;
+  --panel: #171c36;
+  --line: #2a3157;
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1rem/1.55 var(--body);
+  padding-block: clamp(20px, 5vw, 48px) 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  -webkit-text-size-adjust: 100%;
+}
+
+.wrap {
+  max-width: 640px;
+  margin-inline: auto;
+  display: grid;
+  gap: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font: 700 0.72rem/1 var(--display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+h1 {
+  margin: 0;
+  font: 800 clamp(2.4rem, 11vw, 3.6rem)/1 var(--body);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin: 12px 0 0;
+  font-size: 1.0625rem;
+  max-width: 46ch;
+}
+
+/* Press area */
+.stage {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 12px;
+  width: 100%;
+  min-height: clamp(260px, 62vw, 380px);
+  padding: 28px 20px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--on-dark);
+  background: var(--idle);
+  font-family: var(--body);
+  text-align: center;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background-color 0.15s;
+}
+
+.stage.wait {
+  background: var(--wait);
+}
+
+.stage.go {
+  background: var(--go);
+  color: var(--on-go);
+  transition: none;
+}
+
+.stage.early {
+  background: var(--early);
+  color: var(--on-early);
+}
+
+.stage.result {
+  background: var(--result);
+}
+
+.stage.done {
+  background: var(--done);
+}
+
+.stage:focus-visible {
+  outline: 3px solid var(--fg);
+  outline-offset: 4px;
+}
+
+.s-label {
+  font: 700 0.8rem/1 var(--display);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.s-big {
+  font: 700 clamp(2.2rem, 11vw, 4.2rem)/1.05 var(--display);
+  font-variant-numeric: tabular-nums;
+}
+
+.s-hint {
+  max-width: 34ch;
+  font-size: 1.0625rem;
+}
+
+/* Attempts and stats */
+.h {
+  margin: 0 0 10px;
+  font: 700 0.7rem/1 var(--display);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rounds {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.chip {
+  padding: 12px 4px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  text-align: center;
+  font: 400 0.9rem/1.2 var(--display);
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.chip.on {
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.stat {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.stat .v {
+  font: 700 clamp(1rem, 4.6vw, 1.5rem)/1.1 var(--display);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* Code notes */
+.how {
+  display: grid;
+  gap: 16px;
+}
+
+.how h2 {
+  margin: 0;
+  font: 800 1.4rem/1.2 var(--body);
+}
+
+.how p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  max-width: 56ch;
+}
+
+code {
+  font-family: var(--display);
+  font-size: 0.85em;
+}
+
+pre {
+  margin: 0;
+  overflow-x: auto;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font: 400 0.82rem/1.6 var(--display);
+  color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
